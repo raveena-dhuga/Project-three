@@ -1,0 +1,70 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    font-family: 'Urbanist', sans-serif;
+}
+
+body {
+    margin: 0;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    margin: 20px auto;
+    width: 50%;
+    text-align: center;
+}
+
+.searchbar {
+    width: 70%;
+    height: 40px;
+    margin: 0 auto;
+    padding: 10px 80px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.suggested-container {
+    display: grid;
+    grid-row-gap: 20px;
+    padding: 30px 10px;
+}
+
+.suggested-item {
+    display: grid;
+    grid-template-columns: .3fr 1fr 1fr 2fr 1fr;
+    grid-column-gap: 50px;
+    padding: 0 30px;
+    font-size: 20px;
+}
+
+.bold {
+    background: yellow;
+}
+
+.check {
+    background: red;
+    height: 10px;
+    width: 50px;
+}
+
+.uncheck {
+    background: blue;
+    height: 10px;
+    width: 50px;
+}
+
+.box {
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,10 @@
+
+# Parcel #
+.parcel-cache
+dist
+
+# NPM #
+node_modules
+
+
+.DS-Store
