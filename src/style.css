@@ -5,54 +5,154 @@
 
 html {
     overflow-x: hidden;
-    font-family: 'Urbanist', sans-serif;
 }
 
 body {
     margin: 0;
     overflow-x: hidden;
-    width: 100%;
+    font-family: 'Urbanist', sans-serif;
 }
 
 .main-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    position: absolute;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2% 7% 10px 9%;
+    margin-bottom: 45px;
+    border-bottom: 12px solid lightgrey;
+}
+
+.home-link {
+    text-decoration: none;
+    color: black;
+    align-self: flex-end;
 }
 
 h1 {
-    margin: 20px auto;
-    width: 50%;
-    text-align: center;
+    font-size: 40px;
+    margin: 0;
+}
+
+
+.destinations {
+    display: flex;
+    align-items: end;
+    text-decoration: none;
+    color: black;
+    align-self: flex-end;
+}
+
+.destinations:hover,
+.home-link:hover {
+    text-decoration: underline;
+}
+
+.plane-icon {
+    width: 30px;
+    height: 30px;
+}
+
+
+h3 {
+    margin: 0 0 1px 5px;
+
+}
+
+
+
+.searchbar-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    margin-bottom: 60px;
 }
 
 .searchbar {
     width: 70%;
-    height: 40px;
-    margin: 0 auto;
-    padding: 10px 80px;
     font-family: inherit;
     font-size: 1rem;
+    padding: 10px 30px;
+    margin: 0 auto;
+    position: absolute;
 }
 
-.suggested-container {
+.clear-input {
+    position: relative;
+    height: 30px;
+    width: 30px;
+    background: lightgrey;
+    border-radius: 50%;
+    border: none;
+    top: 6px;
+    left: 33%;
+    font-weight: bold;
+}
+
+.clear-input:hover {
+    background: black;
+    color: white;
+    cursor: pointer;
+}
+
+
+.suggested-container, .saved-container {
     display: grid;
     grid-row-gap: 20px;
-    padding: 30px 10px;
+    padding: 0 40px 30px 40px;
+    min-width: 100%;
+    min-height: 200px;
+    overflow-x: hidden;
 }
 
-.suggested-item {
+.suggested-item, .saved-item {
     display: grid;
-    grid-template-columns: .3fr 1fr 1fr 2fr 1fr;
-    grid-column-gap: 50px;
+    grid-template-columns: .4fr .5fr 1.5fr 1.2fr 2fr .7fr;
+    grid-column-gap: 70px;
     padding: 0 30px;
+    font-size: 18px;
+}
+
+.saved-item {
+    grid-template-columns: .5fr .5fr 1.5fr 1.2fr 2fr .7fr;
+}
+
+
+.suggested-item.header {
     font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 45px;
+}
+
+.saved-item.header {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0 20px 0;
+}
+
+.header :first-child {
+    font-size: 16px;
+}
+
+.saved-item.header :first-child  p {
+    color: grey;
+    font-style: italic;
+    font-size: 10px;
 }
 
 .bold {
-    background: yellow;
+    background: #ffff66;
 }
 
-.check {
+/* .check {
     background: red;
     height: 10px;
     width: 50px;
@@ -62,9 +162,109 @@ h1 {
     background: blue;
     height: 10px;
     width: 50px;
+} */
+
+.checkbox {
+    width: 20px;
+    height: 20px;
 }
 
-.box {
-    width: 30px;
-    height: 30px;
+.flag {
+    height: auto;
+    width: 50px;
+}
+
+.trash-container {
+    margin: 0 7% 0 auto;
+    width: 35%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.trash {
+    width: 35px;
+    height: 35px;
+    margin-left: 5px;
+}
+
+.trash:hover {
+    cursor: pointer;
+}
+
+
+
+/* Media queries  */
+
+@media only screen and (max-width: 500px) {
+
+    nav {
+        padding: 5% 7% 10px 9%;
+    }
+
+    .responsive-grid-item {
+        display: none;
+    }
+
+    .suggested-item, .saved-item { 
+        font-size: 14px;
+        grid-template-columns: .5fr 1.2fr 1fr;
+        grid-column-gap: 30px;
+    }
+
+    .suggested-item.header, .saved-item.header { 
+        font-size: 14px;
+        grid-template-columns: .5fr 1.2fr 1fr;
+        grid-column-gap: 30px;
+    }
+
+    .suggested-container, .saved-container {
+       padding: 0 20px 30px;
+    }
+
+    .header :first-child {
+        font-size: 12px;
+    }
+    .saved-item.header :first-child  p {
+        font-size: 7px;
+    }
+
+    .searchbar-container {
+        margin-bottom: 10px;
+    }
+    .searchbar {
+        font-size: 12px;
+        color: black;
+        padding: 8px 15px;
+    }
+
+    .clear-input {
+        width: 22px;
+        height: 22px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+    .plane-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .trash-container {
+        font-size: 12px;}
+    /* .suggested-item {
+        display: grid;
+        
+        grid-column-gap: 70px;
+        padding: 0 30px;
+        font-size: 20px;
+    } */
+
+    
 }
