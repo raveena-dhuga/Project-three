@@ -9,6 +9,7 @@ function ContextProvider(props) {
     const [saved, setSaved] = useState(JSON.parse(localStorage.getItem('saved')) || [])
     const [checkedState, setCheckedState] = useState(new Array(saved.length).fill(false))
     const [lastChecked, setLastChecked] = useState()
+    const [renderList, setRenderList] = useState()
 
     const endpoint = 'https://restcountries.com/v3.1/all'
 
@@ -30,6 +31,7 @@ function ContextProvider(props) {
             item.name.common && matchArray.push(item.name.common.toLowerCase().includes(word))
             if (matchArray.some(item => item === true)) { return true }
         })
+        setRenderList(true)
         setSuggestedCountries(newCountries)
     }
 
@@ -87,7 +89,9 @@ function ContextProvider(props) {
             saved,
             setCheckedState,
             handleOnChange,
-            checkedState
+            checkedState, 
+            renderList, 
+            setRenderList
         }}>
             {props.children}
         </Context.Provider>

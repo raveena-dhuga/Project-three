@@ -40,7 +40,7 @@ function SavedDestinations() {
                     121-120 121 48 48ZM261-120q-24 0-42-18t-18-42v-570h-41v-60h188v-30h264v30h188v60h-41v570q0
                     24-18 42t-42 18H261Zm438-630H261v570h438v-570Zm-438 0v570-570Z"/>
         </svg>
-        
+
 
     return (
         <div>
@@ -51,11 +51,11 @@ function SavedDestinations() {
             <ul className="saved-container">
                 <div className="saved-item header">
                     <div>Visited <p> Shift to select multiple</p></div>
-                    <div className="flag responsive-grid-item">Flag</div>
+                    <div className="flag responsive-grid-item-2">Flag</div>
                     <div> Country Name</div>
                     <div>  Capital</div>
-                    <div className="responsive-grid-item"> Languages </div>
-                    <div className="responsive-grid-item"> Currencies</div>
+                    <div className="responsive-grid-item-1"> Languages </div>
+                    <div className="responsive-grid-item-1"> Currencies</div>
                 </div>
                 {savedItemElements}
             </ul>

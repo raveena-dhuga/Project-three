@@ -8,7 +8,7 @@ function Nav () {
             <Link className="home-link" to="/">
                 <h1> Travel List</h1>
             </Link>
-            <Link to="/saved-destinations" className="destinations"> 
+            <Link to="/saved-destinations" className="saved-destinations"> 
                 <svg className="plane-icon" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
                     <path d="m263-263 290-143 143-290-290 143-143 290Zm217-177q-17 0-28.5-11.5T440-480q0-17 11.5-28.5T480-520q17
                      0 28.5 11.5T520-480q0 17-11.5 28.5T480-440Zm0 360q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83

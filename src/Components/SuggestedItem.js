@@ -23,13 +23,13 @@ function SuggestedItem({ country, input }) {
                 type="checkbox" 
                 checked ={saved.includes(country.name.common.toString())} onChange={()=> updatingSaved(country)}
             />
-            <img className="flag responsive-grid-item" src={country.flags.png} />
+            <img className="flag responsive-grid-item-2" src={country.flags.png} />
             <div> {countryName}</div>
             <div>{capitalName}</div>
-            <div className="responsive-grid-item"> 
+            <div className="responsive-grid-item-1"> 
                 {country.languages && Object.values(country.languages).join(', ')}
             </div>
-            <div className="responsive-grid-item"> 
+            <div className="responsive-grid-item-1"> 
                 {country.currencies && Object.keys(country.currencies).join(', ')}
             </div>
         </div>

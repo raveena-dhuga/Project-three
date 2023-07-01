@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Context } from "../Context"
 import SuggestedItem from "../Components/SuggestedItem"
 import { v4 as uuidv4 } from 'uuid'
 
 function MainPage() {
 
-    const { countries, findCountries, suggestedCountries, setSuggestedCountries } = useContext(Context)
+    const { countries, findCountries, suggestedCountries, setSuggestedCountries, renderList, setRenderList } = useContext(Context)
     const [input, setInput] = useState("")
+
 
     const suggestedItemElements = suggestedCountries.map((item) =>
         (<SuggestedItem key={uuidv4()} country={item} input={input} />))
@@ -15,6 +16,18 @@ function MainPage() {
         if (e.target.value.length === 0) {
             setSuggestedCountries([])
         }
+    }
+
+    useEffect(() => {
+        setRenderList(false)
+
+        return () => {
+            setRenderList(false)
+        }
+    }, [])
+
+    function renderItems() {
+        if (suggestedItemElements && renderList) { return suggestedItemElements }
     }
 
 
@@ -34,13 +47,14 @@ function MainPage() {
             <div className="suggested-container">
                 <div className="suggested-item header">
                     <div>Add to Saved</div>
-                    <div className="flag responsive-grid-item">Flag</div>
+                    <div className="flag responsive-grid-item-2">Flag</div>
                     <div> Country Name</div>
                     <div>  Capital</div>
-                    <div className="responsive-grid-item"> Languages </div>
-                    <div className="responsive-grid-item"> Currencies</div>
+                    <div className="responsive-grid-item-1"> Languages </div>
+                    <div className="responsive-grid-item-1"> Currencies</div>
                 </div>
-                {suggestedItemElements && suggestedItemElements}
+                {renderItems()}
+                {/* {suggestedItemElements && suggestedItemElements} */}
             </div>
         </div>
     )
