@@ -7,9 +7,9 @@ function ContextProvider(props) {
     const [countries, setCountries] = useState([])
     const [suggestedCountries, setSuggestedCountries] = useState([])
     const [saved, setSaved] = useState(JSON.parse(localStorage.getItem('saved')) || [])
-    const [checkedState, setCheckedState] = useState(new Array(saved.length).fill(false))
-    const [lastChecked, setLastChecked] = useState()
     const [renderList, setRenderList] = useState()
+    const [lastCheckedItem, setLastCheckedItem] = useState()
+    const [checkedItems, setCheckedItems] = useState([])
 
     const endpoint = 'https://restcountries.com/v3.1/all'
 
@@ -56,28 +56,42 @@ function ContextProvider(props) {
     // Saved Destinations page
 
 
-    function handleOnChange(position, e) {
-        let updatedCheckedState
+    const savedArray = countries.filter(item => saved.includes(item.name.common.toString())).map((el, index) =>
+        ({ ...el, id: index }))
+    // local Storage/state?
 
-        if (e.nativeEvent.shiftKey && e.target.checked) {
-            let indexArray = []
-            saved.forEach((item, index) => indexArray.push(index))
-            const newArray = indexArray.slice(
-                Math.min(lastChecked, Number(e.target.id)),
-                Math.max(lastChecked, Number(e.target.id) + 1)
-            )
-            updatedCheckedState = checkedState.map((k, index) => {
-                return newArray.includes(index) ? true : k
-            })
-        } else {
-            updatedCheckedState = checkedState.map((item, index) =>
-                index === position ? !item : item
-            )
+    function handleOnChange(index, e) {
+        setCheckedItems(updateCheckedItems(index, e))
+        setLastCheckedItem(index)
+    }
+
+    function getNewCheckedItems(index, e) {
+        let indexArray = []
+        saved.forEach((item, index) => indexArray.push(index))
+        const newArray = indexArray.slice(
+            Math.min(lastCheckedItem, index),
+            Math.max(lastCheckedItem, index) + 1
+        )
+        return newArray
+    }
+
+    function updateCheckedItems(index, e) {
+        const hasBeenChecked = checkedItems.includes(index);
+
+        if (e.nativeEvent.shiftKey) {
+            const newCheckedItems = getNewCheckedItems(index, e)
+            const selections = [...new Set([...checkedItems, ...newCheckedItems])]
+            if (hasBeenChecked) {
+                return selections.filter(item => !newCheckedItems.includes(item))
+            }
+            return selections
         }
 
-        setCheckedState(updatedCheckedState);
-        setLastChecked(position)
+        return checkedItems.includes(index)
+            ? checkedItems.filter(item => item !== index)
+            : [...checkedItems, index]
     }
+
 
     return (
         <Context.Provider value={{
@@ -87,11 +101,10 @@ function ContextProvider(props) {
             setSuggestedCountries,
             updatingSaved,
             saved,
-            setCheckedState,
+            renderList,
+            setRenderList,
             handleOnChange,
-            checkedState, 
-            renderList, 
-            setRenderList
+            checkedItems
         }}>
             {props.children}
         </Context.Provider>

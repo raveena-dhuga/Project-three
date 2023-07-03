@@ -3,7 +3,7 @@ import { Context } from "../Context"
 
 function SavedItem({ country, name, index }) {
 
-    const { checkedState, handleOnChange } = useContext(Context)
+    const { handleOnChange, checkedItems } = useContext(Context)
 
     const countryName = country.name.common
     const capitalName = country.capital.join(", ")
@@ -17,8 +17,8 @@ function SavedItem({ country, name, index }) {
                 id={index}
                 name={name}
                 value={name}
-                checked={checkedState[index]}
-                onChange={(e) => handleOnChange(index, e)}
+                checked={checkedItems.includes(index)}
+                onChange={(e) => { handleOnChange(index, e) }}
             />
             <img className="flag responsive-grid-item-2" src={country.flags.png} />
             <div> {countryName}</div>
