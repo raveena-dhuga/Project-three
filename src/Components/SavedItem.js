@@ -6,7 +6,7 @@ function SavedItem({ country, name, index }) {
     const { handleOnChange, checkedItems } = useContext(Context)
 
     const countryName = country.name.common
-    const capitalName = country.capital.join(", ")
+    const capitalName = country.capital && country.capital.join(", ")
 
     return (
 

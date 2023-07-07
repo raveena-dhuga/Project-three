@@ -56,10 +56,6 @@ function ContextProvider(props) {
     // Saved Destinations page
 
 
-    const savedArray = countries.filter(item => saved.includes(item.name.common.toString())).map((el, index) =>
-        ({ ...el, id: index }))
-    // local Storage/state?
-
     function handleOnChange(index, e) {
         setCheckedItems(updateCheckedItems(index, e))
         setLastCheckedItem(index)
@@ -90,6 +86,20 @@ function ContextProvider(props) {
         return checkedItems.includes(index)
             ? checkedItems.filter(item => item !== index)
             : [...checkedItems, index]
+
+    }
+
+    function removeFromSaved() {
+        const savedArray = countries.filter(item => {
+            return saved.includes(item.name.common.toString())}).map(item => item.name.common.toString())
+
+        const savedByName = checkedItems.map(item => savedArray[item])
+       const updatedSaved = savedArray.filter((item) => !savedByName.includes(item))
+
+       localStorage.setItem('saved', JSON.stringify(updatedSaved))
+       setSaved(updatedSaved)
+       setLastCheckedItem()
+       setCheckedItems([])
     }
 
 
@@ -104,7 +114,8 @@ function ContextProvider(props) {
             renderList,
             setRenderList,
             handleOnChange,
-            checkedItems
+            checkedItems,
+            removeFromSaved
         }}>
             {props.children}
         </Context.Provider>
