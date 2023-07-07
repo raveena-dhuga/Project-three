@@ -59,7 +59,7 @@ h3 {
 }
 
 
-/*  */
+/* Nav ends */
 
 
 .main-container {
@@ -187,7 +187,7 @@ h3 {
 
 /* Media queries  */
 
-@media only screen and (max-width: 830px) {
+@media only screen and (max-width: 880px) {
 
     .responsive-grid-item-1 {
         display: none;

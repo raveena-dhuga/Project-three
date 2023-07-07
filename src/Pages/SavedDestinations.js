@@ -9,10 +9,12 @@ function SavedDestinations() {
     const [hovered, setHovered] = useState(false)
     const ref = useRef(null)
 
-    const savedArray = countries.filter(item => saved.includes(item.name.common.toString()))
+    const savedArray = countries.length > 0 ? saved.map(item => {
+        const countryInfo = countries.filter(y => y.name.common === item)
+        return countryInfo[0]
+    }) : []
 
-
-    const savedItemElements = savedArray.map((item, index) =>
+    const savedItemElements = savedArray.length > 0 && savedArray.map((item, index) =>
         (<SavedItem key={index} country={item} index={index} name={item.name.common} />))
 
 

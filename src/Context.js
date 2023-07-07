@@ -90,16 +90,18 @@ function ContextProvider(props) {
     }
 
     function removeFromSaved() {
-        const savedArray = countries.filter(item => {
-            return saved.includes(item.name.common.toString())}).map(item => item.name.common.toString())
+        const savedArray = saved.map(item => {
+            const countryInfo = countries.filter(y => y.name.common === item)
+            return countryInfo[0]
+        }).map(item => item.name.common.toString())
 
-        const savedByName = checkedItems.map(item => savedArray[item])
-       const updatedSaved = savedArray.filter((item) => !savedByName.includes(item))
+        const selectedToDelete = checkedItems.map(item => savedArray[item])
+        const updatedSaved = savedArray.filter((item) => !selectedToDelete.includes(item))
 
-       localStorage.setItem('saved', JSON.stringify(updatedSaved))
-       setSaved(updatedSaved)
-       setLastCheckedItem()
-       setCheckedItems([])
+        localStorage.setItem('saved', JSON.stringify(updatedSaved))
+        setSaved(updatedSaved)
+        setLastCheckedItem()
+        setCheckedItems([])
     }
 
 
