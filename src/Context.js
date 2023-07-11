@@ -117,7 +117,8 @@ function ContextProvider(props) {
             setRenderList,
             handleOnChange,
             checkedItems,
-            removeFromSaved
+            removeFromSaved,
+            setCheckedItems
         }}>
             {props.children}
         </Context.Provider>

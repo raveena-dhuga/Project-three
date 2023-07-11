@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 function MainPage() {
 
-    const { countries, findCountries, suggestedCountries, setSuggestedCountries, renderList, setRenderList } = useContext(Context)
+    const { countries, findCountries, suggestedCountries, setSuggestedCountries, renderList, setRenderList, setCheckedItems } = useContext(Context)
     const [input, setInput] = useState("")
 
 
@@ -20,6 +20,7 @@ function MainPage() {
 
     useEffect(() => {
         setRenderList(false)
+        setCheckedItems([])
 
         return () => {
             setRenderList(false)
